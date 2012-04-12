@@ -171,7 +171,7 @@ Pour faire des changements sur le GUI, nous allons devoir éditer le fichier \ `
     :scale: 100%
     :align: center
 
-\  **7.** \Dans la colonne de droite on cherche le widget Checkbox dans la partie\  ``Buttons`` \. Glissez le widget sur le formulaire. Celui ci ressemble alors à ceci:
+\  **7.** \Dans la colonne de droite on cherche le widget Checkbox dans la partie\  ``Buttons`` \. Glissez le widget sur le formulaire. Celui ci ressemble alors à ceci :
 
 .. image:: ../_static/qt_design6.png
     :scale: 100%
@@ -191,7 +191,7 @@ Pour faire des changements sur le GUI, nous allons devoir éditer le fichier \ `
     :scale: 100%
     :align: center
 
-\  **9.** \Bougez les widgets et redimensionnez les pour que votre formulaire ressemble à ceci:
+\  **9.** \Bougez les widgets et redimensionnez les pour que votre formulaire ressemble à ceci :
 
 .. image:: ../_static/qt_design10.png
     :scale: 100%
@@ -219,7 +219,7 @@ Notez que le Makefile est intelligent. Il sait que seul le fichier\  ``.ui`` \ a
     :scale: 100%
     :align: center
 
-\  **2.** \Maintenant naviguez jusque votre répertoire de travail pour les plugins\  ``/home/formation/workspace/vector_selectbypoint`` \et ouvrez le fichier\  ``vector_selectbypoing.py`` \. Votre code devrait ressemble exactement à\  `ceci <../_static/mapcanvas_click_1.py>`_ 
+\  **2.** \Maintenant naviguez jusque votre répertoire de travail pour les plugins\  ``/home/formation/workspace/vector_selectbypoint`` \et ouvrez le fichier\  ``vector_selectbypoing.py`` \. Votre code devrait ressemble exactement à\  `ce fichier <../_static/mapcanvas_click_1.py>`_ 
 
 \  **3.** \Étudions un certain nombre de choses importantes dans ce fichier.
 
@@ -531,8 +531,10 @@ La plupart de ces changements sont de la réorganisation du code.
     * La couche courante
     * Le data provider de la couche courante
 
-La raison pour laquelle nous voulons utiliser des variables de classe plutôt que des variables de fonction est que nous voulons que TOUTES nos fonctions puissent y accéder et prendre des décisions basées sur leurs valeurs. Présentement toutes ces variables sont réglées dans la fonction\  ``selectFeature()`` \. Cela signifie que nous allons devoir déplacer la variable\  ``selectList`` \hors de la fonction\  ``selectFeature()`` \et la mettre dans\  ``__init__()`` \ ainsi que les variables \  ``cLayer`` \et\  ``provider`` \. Faites donc en sorte que votre fonction\  ``__init__()`` \ressemble à ceci::
+La raison pour laquelle nous voulons utiliser des variables de classe plutôt que des variables de fonction est que nous voulons que TOUTES nos fonctions puissent y accéder et prendre des décisions basées sur leurs valeurs. Présentement toutes ces variables sont réglées dans la fonction\  ``selectFeature()`` \. Cela signifie que nous allons devoir déplacer la variable\  ``selectList`` \hors de la fonction\  ``selectFeature()`` \et la mettre dans\  ``__init__()`` \ ainsi que les variables \  ``cLayer`` \et\  ``provider`` \. Faites donc en sorte que votre fonction\  ``__init__()`` \ressemble à ceci :
 
+::
+	
     def __init__(self, iface):
         # Save reference to the QGIS interface
         self.iface = iface
@@ -609,8 +611,10 @@ Voici la fonction complète\  ``selectFeature()`` \pour voir le code ci-dessus d
         else:   
                 QMessageBox.information( self.iface.mainWindow(),"Info", "No layer currently selected in TOC" )
     
-\  **6.** \Comme précaution supplémentaire, nous allons écrire deux lignes dans la fonction\  ``run()`` \qui vont régler la couche courante et le data provider lorsque le plugin est ouvert la première fois. La plupart des gens vont avoir les layers déjà chargé avant d'ouvrir le plugin. Comme notre couche courante et notre data provider sont réglés automatiqumeent quand une couche différente est sélectionnée dans la liste des couches, nous n'avons pas de valeur initiale. Désormais la fonction\  ``run()`` \ressemblera à ceci::
+\  **6.** \Comme précaution supplémentaire, nous allons écrire deux lignes dans la fonction\  ``run()`` \qui vont régler la couche courante et le data provider lorsque le plugin est ouvert la première fois. La plupart des gens vont avoir les layers déjà chargé avant d'ouvrir le plugin. Comme notre couche courante et notre data provider sont réglés automatiqumeent quand une couche différente est sélectionnée dans la liste des couches, nous n'avons pas de valeur initiale. Désormais la fonction\  ``run()`` \ressemblera à ceci :
 
+::
+	
     # run method that performs all the real work
     def run(self):
         # set the current layer immediately if it exists, otherwise it will be set on user selection
@@ -634,8 +638,10 @@ Voici la fonction complète\  ``selectFeature()`` \pour voir le code ci-dessus d
         result = QObject.connect(self.iface, SIGNAL("currentLayerChanged(QgsMapLayer *)"), self.handleLayerChange)
         # QMessageBox.information( self.iface.mainWindow(),"Info", "connect = %s"%str(result) )
 
-\  **8.** \Notre fonction spécifique pour gérer le changement de couche ressemblera à ceci::
+\  **8.** \Notre fonction spécifique pour gérer le changement de couche ressemblera à ceci :
 
+::
+	
     def handleLayerChange(self, layer):
             self.cLayer = self.canvas.currentLayer()        
             if self.cLayer:

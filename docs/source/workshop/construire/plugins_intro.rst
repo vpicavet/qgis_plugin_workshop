@@ -20,8 +20,10 @@ Pour avoir une meilleure idée de comment ces différents fichiers composent un 
     :scale: 70%
     :align: center
 
-\  **2.** \Allons dans le répertoire caché\  ``.qgis`` \qui se trouve dans votre répertoire personnel. Dans ce répertoire se trouvent les plugins Python de QGIS. On peut les lister::
+\  **2.** \Allons dans le répertoire caché\  ``.qgis`` \qui se trouve dans votre répertoire personnel. Dans ce répertoire se trouvent les plugins Python de QGIS. On peut les lister :
 
+::
+	
     $cd .qgis/python/plugins/
     $ ls -lah
     total 17K
@@ -33,8 +35,10 @@ Pour avoir une meilleure idée de comment ces différents fichiers composent un 
 Le projet\  **pluginbuilder** \situé dans\ ``/home/formation/.qgis/python/plugins`` \est un plugin avec lequel nous allons nous familiariser sous peu. Il rend la création de plugins plus simlpe en créant les modèles de fichiers automagiquement (les fichiers cités précedemment).Le\  **pluginbuilder** \ajoute aussi du code dans ces modèles, que nous allons pouvoir modifier ensuite.
 
 
-\  **3.** \Changez de répertoire en entrant dans\  ``pluginbuilder`` \et affichez uniquement les fichiers d'extension\  ``(.ui, .py and .qrc)`` \comme ci-dessous. La raison pour laquelle nous ne visualisons que ces fichiers est pour exclure les modules Python compilés -- ceux avec une extension\  ``.pyc`` \::
+\  **3.** \Changez de répertoire en entrant dans\  ``pluginbuilder`` \et affichez uniquement les fichiers d'extension\  ``(.ui, .py and .qrc)`` \comme ci-dessous. La raison pour laquelle nous ne visualisons que ces fichiers est pour exclure les modules Python compilés -- ceux avec une extension\  ``.pyc`` \ :
 
+::
+	
     $ cd pluginbuilder
     $ ls -l *.py *.ui *.qrc
     -rw-r--r-- 1 formation formation  1586 2011-07-07 13:41 __init__.py

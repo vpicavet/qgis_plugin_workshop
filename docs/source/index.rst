@@ -9,7 +9,7 @@ Bienvenue sur le tutoriel QGIS Plugins
 Contents:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    workshop/index
 
